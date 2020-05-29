@@ -1,0 +1,19 @@
+version: '3.4'
+
+volumes:
+  reservation-data:
+
+services:
+
+  reservation-db:
+    container_name: reservation-db
+    image: postgres:11.5
+    ports:
+    - "5431:5432"
+    environment:
+      POSTGRES_DB: reservation
+      POSTGRES_USER: reservation
+      POSTGRES_PASSWORD: reservation
+    volumes:
+    - reservation-data:/var/lib/postgresql/data
+    - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
